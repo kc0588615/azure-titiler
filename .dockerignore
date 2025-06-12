@@ -1,0 +1,38 @@
+# Virtual environments
+venv/
+antenv/
+env/
+.env
+
+# Git
+.git/
+.gitignore
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Documentation
+*.md
+!README.md
+
+# Deployment files
+release.zip
