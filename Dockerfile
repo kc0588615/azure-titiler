@@ -1,5 +1,5 @@
-# Start with the official Azure App Service base image for Python 3.12
-FROM mcr.microsoft.com/appsvc/python:3.12-slim
+# Start with the official Python 3.12 slim image
+FROM python:3.12-slim
 
 # Install system dependencies required by titiler/rasterio, especially GDAL
 RUN apt-get update && apt-get install -y \
