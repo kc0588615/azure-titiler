@@ -1,28 +1,15 @@
-# Start with the official Python 3.12 slim image
-FROM python:3.12-slim
+# Use the official TiTiler container as base - it has everything pre-configured
+FROM ghcr.io/developmentseed/titiler:latest
 
-# Install system dependencies required by titiler/rasterio, especially GDAL
-RUN apt-get update && apt-get install -y \
-    libgdal-dev \
-    gdal-bin \
-    && rm -rf /var/lib/apt/lists/*
-
-# Set environment variables for GDAL
-ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
-ENV C_INCLUDE_PATH=/usr/include/gdal
-
-# Copy your application's requirements file
-COPY requirements.txt /
-
-# Install Python packages, including titiler and its dependencies
-# Use --no-binary to ensure rasterio is built correctly
-RUN pip install --no-cache-dir -r /requirements.txt --no-binary rasterio
-
-# Copy the rest of your application code into the container
-COPY . /home/site/wwwroot
+# Copy your application code
+COPY . /app
 
 # Set working directory
-WORKDIR /home/site/wwwroot
+WORKDIR /app
 
-# Start the FastAPI application
+# Install any additional Python dependencies your app needs
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Start your FastAPI application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
