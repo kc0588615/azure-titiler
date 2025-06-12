@@ -78,6 +78,6 @@ jobs:
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'azure-titiler-awewf7egavbxdpfy'
+          app-name: 'azure-titiler'
           slot-name: 'Production'
           
